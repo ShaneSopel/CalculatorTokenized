@@ -37,9 +37,6 @@ pub trait Operation
     fn skip_whitespace(&mut self);
     fn read_number(&mut self) -> (String, usize);
     fn evaluate(&mut self, tokens: Vec<Token>) -> f64;
-    //fn InputHandler(&mut self)-> u64;
-    //fn OperatorHandler(&mut self, input: &char, number: u64);   
-
 }
 
 impl Operation for Calculator
@@ -74,6 +71,13 @@ impl Operation for Calculator
 
         match current_char
         {
+            /*'^' =>
+            {
+                self.pos += 1;
+                println!("^");
+                Some(Token::Exponent)
+                
+            }*/
             '+' => 
             {
                 self.pos += 1;
@@ -174,6 +178,8 @@ impl Operation for Calculator
         {
             match token
             {
+
+                //Token::Exponent => currrent_op = Token::Exponent,
                 Token::Addition => currrent_op = Token::Addition,
                 Token::Subtraction => currrent_op = Token::Subtraction,
                 Token::Multiplication => currrent_op = Token::Multiplication,
@@ -186,6 +192,7 @@ impl Operation for Calculator
                         Token::Subtraction => self.result -= num,
                         Token::Multiplication => self.result *= num, 
                         Token::Division => self.result /= num,
+                        //Token::Exponent => self.result.pow(num),
                         _ => panic!("Unexpected Token"),
                     }
                 }
